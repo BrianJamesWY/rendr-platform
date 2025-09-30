@@ -362,7 +362,15 @@
                 }, 2000);
             }
         });
-        
+        // Check for demo mode
+if (window.location.hash === '#demo') {
+    document.getElementById('uploadPage').style.display = 'none';
+    showProfilePage('democreator');
+    
+    // Set impressive demo stats
+    localStorage.setItem('rendr_visits', '3847');
+    localStorage.setItem('rendr_video_count', '12');
+}
         // === PROFILE PAGE FUNCTIONALITY ===
         
         function showProfilePage(username) {
