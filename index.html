@@ -209,8 +209,8 @@
         <h1>⭐ Rendr</h1>
         <p class="subtitle">Add watermark & get analytics for your videos</p>
         <p style="margin: 20px 0; padding: 15px; background: #f0f0ff; border-radius: 8px; text-align: center;">
-    🔥 <strong>New!</strong> See a <a href="/profile.html?u=demo" style="color: #667eea;">live demo of creator analytics</a> - track which videos drive the most profile visits!
-</p>
+            🔥 <strong>New!</strong> See a <a href="#demo" style="color: #667eea;">live demo of creator analytics</a> - track which videos drive the most profile visits!
+        </p>
         
         <div class="upload-area" id="uploadArea">
             <div class="upload-icon">📹</div>
@@ -362,15 +362,7 @@
                 }, 2000);
             }
         });
-        // Check for demo mode
-if (window.location.hash === '#demo') {
-    document.getElementById('uploadPage').style.display = 'none';
-    showProfilePage('democreator');
-    
-    // Set impressive demo stats
-    localStorage.setItem('rendr_visits', '3847');
-    localStorage.setItem('rendr_video_count', '12');
-}
+        
         // === PROFILE PAGE FUNCTIONALITY ===
         
         function showProfilePage(username) {
@@ -391,6 +383,7 @@ if (window.location.hash === '#demo') {
             
             // Add sample video card
             const videoGrid = document.getElementById('videoGrid');
+            videoGrid.innerHTML = ''; // Clear existing cards
             const videoCard = createVideoCard('Video ' + videos, new Date().toLocaleDateString());
             videoGrid.appendChild(videoCard);
         }
@@ -410,8 +403,15 @@ if (window.location.hash === '#demo') {
         
         // Track page visits (this runs on every page load)
         window.addEventListener('load', () => {
+            // Check for demo mode
+            if (window.location.hash === '#demo') {
+                // Set impressive demo stats
+                localStorage.setItem('rendr_visits', '3847');
+                localStorage.setItem('rendr_video_count', '12');
+                showProfilePage('democreator');
+            }
             // Check if we're on a profile page
-            if (window.location.hash.startsWith('#profile/')) {
+            else if (window.location.hash.startsWith('#profile/')) {
                 const username = window.location.hash.replace('#profile/', '');
                 
                 // Increment visit counter
