@@ -1,9 +1,9 @@
-"<!DOCTYPE html>
-<html lang=\"en\">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset=\"UTF-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-    <title>RENDR - Prove Your Videos Are Real</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RENDR - Revolutionary Blockchain Video Verification Technology</title>
     <style>
         * {
             margin: 0;
@@ -12,8 +12,8 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-            background: #0a0a0a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #0f0f1e 100%);
             color: #ffffff;
             overflow-x: hidden;
         }
@@ -25,322 +25,455 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
             position: relative;
+            overflow: hidden;
         }
 
-        .logo-hero {
-            width: 120px;
-            height: 120px;
-            margin-bottom: 40px;
-            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 123, 255, 0.1) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .checkstar-logo {
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .checkstar-logo svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 30px rgba(0, 123, 255, 0.6));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1200px;
         }
 
         .hero h1 {
-            font-size: clamp(40px, 8vw, 80px);
+            font-size: 4.5rem;
             font-weight: 900;
-            margin-bottom: 30px;
-            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #00d4ff 0%, #0080ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            text-transform: uppercase;
             letter-spacing: -2px;
         }
 
         .hero .tagline {
-            font-size: clamp(20px, 4vw, 32px);
-            font-weight: 300;
-            margin-bottom: 50px;
-            opacity: 0.95;
-            max-width: 800px;
-        }
-
-        .status {
-            display: inline-block;
-            padding: 12px 30px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 30px;
-            font-size: 16px;
+            font-size: 2rem;
             font-weight: 600;
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Main Sections */
-        .section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 80px 20px;
-        }
-
-        .section-mobile {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        }
-
-        .section-studio {
-            background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
-        }
-
-        .section-verify {
-            background: linear-gradient(135deg, #c94b4b 0%, #4b134f 100%);
-        }
-
-        .section-title {
-            font-size: clamp(50px, 10vw, 100px);
-            font-weight: 900;
-            margin-bottom: 40px;
-            letter-spacing: -3px;
+            margin-bottom: 2rem;
+            color: #ffffff;
             text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .section-subtitle {
-            font-size: clamp(24px, 5vw, 40px);
-            font-weight: 700;
-            margin-bottom: 30px;
-            line-height: 1.3;
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            color: #b0b0b0;
+            line-height: 1.6;
             max-width: 900px;
-        }
-
-        .section-description {
-            font-size: clamp(18px, 3vw, 24px);
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto 50px;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
-        .features-list {
-            list-style: none;
-            font-size: clamp(16px, 2.5vw, 22px);
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .features-list li {
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .features-list li:last-child {
-            border-bottom: none;
-        }
-
-        .features-list strong {
-            font-weight: 700;
-            font-size: 1.1em;
-        }
-
-        /* Call to Action */
-        .cta {
-            background: #0a0a0a;
-            padding: 100px 20px;
-            text-align: center;
-        }
-
-        .cta h2 {
-            font-size: clamp(40px, 8vw, 70px);
-            font-weight: 900;
-            margin-bottom: 30px;
-            letter-spacing: -2px;
-        }
-
-        .cta p {
-            font-size: clamp(18px, 3vw, 26px);
-            margin-bottom: 50px;
-            opacity: 0.8;
-            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .cta-button {
+        .patent-badge {
             display: inline-block;
-            padding: 25px 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
+            background: rgba(0, 123, 255, 0.2);
+            border: 2px solid #007bff;
+            padding: 1rem 2rem;
             border-radius: 50px;
+            font-size: 1.2rem;
             font-weight: 700;
-            font-size: clamp(18px, 3vw, 24px);
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
         }
 
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 30px 80px rgba(102, 126, 234, 0.6);
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
         }
 
-        /* Footer */
-        footer {
-            background: #0a0a0a;
-            padding: 60px 20px;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .founder {
-            font-size: clamp(20px, 3vw, 28px);
+        .cta-button {
+            padding: 1.5rem 3rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .founder-title {
-            font-size: clamp(16px, 2vw, 20px);
-            opacity: 0.6;
-            margin-bottom: 20px;
-        }
-
-        footer a {
-            color: #667eea;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             text-decoration: none;
-            font-size: clamp(16px, 2vw, 20px);
-            font-weight: 500;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .cta-primary {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.4);
         }
 
-        .copyright {
-            margin-top: 40px;
-            font-size: 14px;
-            opacity: 0.4;
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 123, 255, 0.6);
         }
 
-        /* Emoji Icons */
-        .icon {
-            font-size: clamp(60px, 10vw, 100px);
-            margin-bottom: 30px;
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            border: 3px solid #007bff;
         }
 
-        /* Responsive adjustments */
+        .cta-secondary:hover {
+            background: rgba(0, 123, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 123, 255, 0.05) 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00d4ff 0%, #0080ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #b0b0b0;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 123, 255, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #007bff;
+            box-shadow: 0 20px 40px rgba(0, 123, 255, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #d0d0d0;
+        }
+
+        /* Technology Section */
+        .technology {
+            padding: 6rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tech-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .tech-item .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #007bff;
+        }
+
+        .tech-item h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .tech-item p {
+            font-size: 1rem;
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 8rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, transparent 100%);
+        }
+
+        .final-cta h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .final-cta p {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            color: #d0d0d0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .features-list {
-                text-align: center;
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.3rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .checkstar-logo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .cta-button {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-
     <!-- Hero Section -->
-    <section class=\"hero\">
-        <!-- Your checkstar logo - replace this SVG with your actual logo file -->
-        <svg class=\"logo-hero\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">
-            <defs>
-                <linearGradient id=\"starGradient\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">
-                    <stop offset=\"0%\" style=\"stop-color:#5B7FE8;stop-opacity:1\" />
-                    <stop offset=\"100%\" style=\"stop-color:#4A67D5;stop-opacity:1\" />
-                </linearGradient>
-            </defs>
-            <polygon points=\"50,10 61,38 90,38 67,55 77,83 50,65 23,83 33,55 10,38 39,38\" fill=\"url(#starGradient)\"/>
-            <path d=\"M 35 45 L 45 60 L 65 35\" stroke=\"white\" stroke-width=\"6\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>
-        </svg>
-
-        <div class=\"status\">🚀 Currently in Development</div>
-        
-        <h1>RENDR</h1>
-        
-        <p class=\"tagline\">
-            In an age of deepfakes and AI-generated content,<br>
-            prove your videos are <strong>REAL</strong>
-        </p>
-    </section>
-
-    <!-- Rendr Mobile Section -->
-    <section class=\"section section-mobile\">
-        <div class=\"icon\">📱</div>
-        <h2 class=\"section-title\">RENDR<br>MOBILE</h2>
-        
-        <p class=\"section-subtitle\">
-            Record Important Moments.<br>
-            Prove They Actually Happened.
-        </p>
-
-        <p class=\"section-description\">
-            The world's first bodycam app that creates an unfakeable record of live events. 
-            When truth matters, Rendr Mobile captures the moment with cryptographic proof that can't be altered or disputed.
-        </p>
-
-        <ul class=\"features-list\">
-            <li><strong>✓ Instant Verification</strong> - Every video gets a unique code proving authenticity</li>
-            <li><strong>✓ Unfakeable Proof</strong> - Advanced technology creates a permanent signature</li>
-            <li><strong>✓ Anyone Can Verify</strong> - Share your code, let the world confirm it's real</li>
-            <li><strong>✓ Perfect For</strong> - Citizen journalism, evidence documentation, important moments</li>
-        </ul>
-    </section>
-
-    <!-- Rendr Studio Section -->
-    <section class=\"section section-studio\">
-        <div class=\"icon\">🎨</div>
-        <h2 class=\"section-title\">RENDR<br>STUDIO</h2>
-        
-        <p class=\"section-subtitle\">
-            For Content Creators.<br>
-            Protect Your Work. Build Your Brand.
-        </p>
-
-        <p class=\"section-description\">
-            Use your favorite editing software - Premiere, Final Cut, DaVinci - then add Rendr verification before you post. 
-            Get a personal showcase page displaying your entire verified collection. Track performance across all platforms in one dashboard.
-        </p>
-
-        <ul class=\"features-list\">
-            <li><strong>✓ Use Any Editing Software</strong> - Keep your workflow, add verification at the end</li>
-            <li><strong>✓ Your Personal Gallery</strong> - Showcase all your work at rendrtruth.com/@yourname</li>
-            <li><strong>✓ Cross-Platform Analytics</strong> - See how your verified videos perform everywhere</li>
-            <li><strong>✓ Build Trust</strong> - Prove to your audience that your content is authentic and original</li>
-            <li><strong>✓ Grow Your Following</strong> - One place for fans to discover all your verified work</li>
-        </ul>
-    </section>
-
-    <!-- Rendr Verify Section -->
-    <section class=\"section section-verify\">
-        <div class=\"icon\">✓</div>
-        <h2 class=\"section-title\">RENDR<br>VERIFY</h2>
-        
-        <p class=\"section-subtitle\">
-            See Something Incredible?<br>
-            Verify It's Real in Seconds.
-        </p>
-
-        <p class=\"section-description\">
-            When you see a Rendr-verified video, you can instantly check if it's authentic. 
-            Enter the code. See the proof. Follow the creator to discover their complete collection of verified work.
-        </p>
-
-        <ul class=\"features-list\">
-            <li><strong>✓ Instant Verification</strong> - Enter any Rendr code to check authenticity</li>
-            <li><strong>✓ Discover Creators</strong> - Find and follow creators across all platforms</li>
-            <li><strong>✓ See Their Collection</strong> - Browse a creator's entire verified portfolio</li>
-            <li><strong>✓ Trust What You Watch</strong> - Know that verified videos are authentic</li>
-        </ul>
-    </section>
-
-    <!-- Call to Action -->
-    <section class=\"cta\">
-        <h2>The Future of Video Truth</h2>
-        <p>Join us in building the infrastructure for authenticity in the digital age</p>
-        <a href=\"mailto:Brian@rendrtruth.com\" class=\"cta-button\">Get Early Access</a>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class=\"founder\">Brian James</div>
-        <div class=\"founder-title\">Creator & CEO</div>
-        <a href=\"mailto:Brian@rendrtruth.com\">Brian@rendrtruth.com</a>
-        
-        <div class=\"copyright\">
-            © 2025 Rendr. Building the future of video verification.
+    <section class="hero">
+        <div class="logo-container">
+            <div class="checkstar-logo">
+                <!-- Checkstar Logo SVG -->
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Star -->
+                    <path d="M100 20 L110 75 L165 75 L120 110 L135 165 L100 130 L65 165 L80 110 L35 75 L90 75 Z" 
+                          fill="url(#starGradient)" stroke="#007bff" stroke-width="3"/>
+                    <!-- Checkmark -->
+                    <path d="M75 100 L90 115 L125 80" 
+                          stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <defs>
+                        <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#0080ff;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
         </div>
-    </footer>
 
+        <div class="hero-content">
+            <h1>The Future of Truth</h1>
+            <p class="tagline">Where Lies Die and Truth Goes Viral</p>
+            
+            <div class="patent-badge">
+                🔒 Patent-Protected Technology
+            </div>
+
+            <p class="subtitle">
+                The world's first cryptographically-secured blockchain verification system that makes deepfakes impossible and truth unstoppable. Every video becomes unbreakable proof, protected by military-grade encryption.
+            </p>
+
+            <div class="cta-buttons">
+                <a href="/mobile-app" class="cta-button cta-primary">Download the App</a>
+                <a href="/platform" class="cta-button cta-secondary">Explore Technology</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">Revolutionary Technology</h2>
+        <p class="section-subtitle">
+            We're not just building an app – we're building the infrastructure that makes truth unstoppable and lies extinct
+        </p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🛡️</span>
+                <h3>Cryptographic DNA Fingerprinting</h3>
+                <p>Every video gets an invisible, indestructible digital signature embedded using military-grade cryptography. It's like genetic code that proves your video is real – and it survives any compression, upload, or sharing.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">⛓️</span>
+                <h3>Blockchain-Anchored Proof</h3>
+                <p>Key moments are permanently recorded on the blockchain with patent-protected technology, creating tamper-proof records that verify your content's authenticity for decades. The same security that protects Bitcoin now protects truth.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h3>Instant Verification</h3>
+                <p>Anyone can instantly verify authenticity. Our visible watermark only appears when the invisible cryptographic signature is intact. No signature = no badge. Truth becomes viral, lies become obvious.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🔬</span>
+                <h3>AI-Proof Technology</h3>
+                <p>Advanced algorithms analyze digital DNA to separate REAL content from AI-generated fakes. Deepfakes, synthetic media, and manipulated videos get NO watermarks because they're MADE, not RECORDED.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🌐</span>
+                <h3>Platform-Agnostic</h3>
+                <p>Our verification survives YouTube, Instagram, TikTok, and every major platform. Advanced mathematics optimize the hidden signature for each platform's compression algorithm automatically.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">⚡</span>
+                <h3>Real-Time Protection</h3>
+                <p>The moment you start recording, verification begins. Any alteration immediately breaks the signature, causing watermarks to disappear and revealing manipulation attempts instantly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="technology">
+        <h2 class="section-title">Built on Unbreakable Security</h2>
+        <p class="section-subtitle">
+            Patent-protected cryptographic methods that create the infrastructure for digital truth
+        </p>
+
+        <div class="tech-grid">
+            <div class="tech-item">
+                <div class="tech-icon">🔐</div>
+                <h4>Military-Grade Encryption</h4>
+                <p>Same cryptography that secures Bitcoin and classified military data now protects truth</p>
+            </div>
+
+            <div class="tech-item">
+                <div class="tech-icon">📡</div>
+                <h4>Blockchain Timestamping</h4>
+                <p>Permanent, immutable records that can never be altered or disputed</p>
+            </div>
+
+            <div class="tech-item">
+                <div class="tech-icon">🧬</div>
+                <h4>Digital DNA Signatures</h4>
+                <p>Unique cryptographic fingerprints embedded invisibly in frequency spectrum</p>
+            </div>
+
+            <div class="tech-item">
+                <div class="tech-icon">🎓</div>
+                <h4>Patent Protected</h4>
+                <p>Revolutionary verification methods secured by intellectual property rights</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>Join the Revolution</h2>
+        <p>
+            Be among the first to experience technology that makes lies impossible and truth unstoppable. 
+            Every download creates another guardian of truth. Every verified video is another authentic voice 
+            that can never be silenced or counterfeited.
+        </p>
+        <div class="cta-buttons">
+            <a href="/mobile-app" class="cta-button cta-primary">Start Creating Truth</a>
+            <a href="/platform" class="cta-button cta-secondary">License Our Technology</a>
+        </div>
+    </section>
 </body>
 </html>
-"
