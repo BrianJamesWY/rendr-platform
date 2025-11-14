@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RENDR - Content Creators Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #0f0f1e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 123, 255, 0.1) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .logo-container {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .checkstar-logo {
+            width: 150px;
+            height: 150px;
+            display: inline-block;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .checkstar-logo svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 30px rgba(0, 123, 255, 0.8));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1200px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #00d4ff 0%, #0080ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .hero .tagline {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            color: #b0b0b0;
+            line-height: 1.6;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .nav-button {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 2px solid rgba(0, 123, 255, 0.5);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            background: rgba(0, 123, 255, 0.1);
+        }
+
+        .nav-button:hover {
+            background: rgba(0, 123, 255, 0.3);
+            border-color: #007bff;
+            transform: translateY(-2px);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .cta-button {
+            padding: 1.8rem 3.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 123, 255, 0.4);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 123, 255, 0.6);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 123, 255, 0.05) 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00d4ff 0%, #0080ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #b0b0b0;
+            margin-bottom: 4rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 123, 255, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #007bff;
+            box-shadow: 0 20px 40px rgba(0, 123, 255, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #d0d0d0;
+        }
+
+        /* Workflow Section */
+        .workflow {
+            padding: 6rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .workflow-step {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 2px solid rgba(0, 123, 255, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .workflow-step:hover {
+            border-color: #007bff;
+            transform: scale(1.05);
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #007bff;
+            margin-bottom: 1rem;
+        }
+
+        .workflow-step h4 {
+            font-size: 1.5rem;
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .workflow-step p {
+            font-size: 1rem;
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* Software Section */
+        .software {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, rgba(0, 123, 255, 0.05) 0%, transparent 100%);
+        }
+
+        .software-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 3rem auto;
+        }
+
+        .software-item {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .software-item:hover {
+            transform: scale(1.1);
+        }
+
+        .software-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .software-name {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            font-weight: 600;
+        }
+
+        /* Dashboard Section */
+        .dashboard {
+            padding: 6rem 2rem;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .dashboard-preview {
+            max-width: 1200px;
+            margin: 3rem auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 123, 255, 0.3);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .metric-card {
+            background: rgba(0, 123, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(0, 123, 255, 0.3);
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .platform-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 123, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 0.25rem;
+            color: #00d4ff;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 2px solid rgba(0, 123, 255, 0.3);
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-size: 1.8rem;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .footer p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #00d4ff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.3rem;
+            }
+
+            .checkstar-logo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="logo-container">
+            <div class="checkstar-logo">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 20 L110 75 L165 75 L120 110 L135 165 L100 130 L65 165 L80 110 L35 75 L90 75 Z" 
+                          fill="url(#starGradient)" stroke="#007bff" stroke-width="3"/>
+                    <path d="M75 100 L90 115 L125 80" 
+                          stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <defs>
+                        <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#0080ff;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <h1>For Content Creators</h1>
+            <p class="tagline">Protect Your Work. Build Your Brand.</p>
+            
+            <p class="subtitle">
+                Create cryptographically protected content while using your favorite editing software. 
+                Every video you make becomes verifiable proof of your authentic work, with all your content 
+                from every platform displayed in one powerful showcase.
+            </p>
+
+            <div class="nav-buttons">
+                <a href="index.html" class="nav-button">← Home</a>
+                <a href="mobile.html" class="nav-button">Mobile Bodycam →</a>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#" class="cta-button cta-primary">Get Started Free</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">Your Creative Freedom, Protected</h2>
+        <p class="section-subtitle">
+            Use the tools you love. Add Rendr verification when you're done. Own your reputation forever.
+        </p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🎨</span>
+                <h3>Use Any Editing Software</h3>
+                <p>Edit in Premiere Pro, Final Cut Pro, DaVinci Resolve, or any tool you prefer. Create your content exactly how you want it. When you're ready to publish, add Rendr verification in seconds.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🔐</span>
+                <h3>Cryptographic Protection</h3>
+                <p>Every video you verify gets a unique blockchain signature that proves it's YOUR original work. No one can steal your content and claim it as theirs. Your watermark is your proof of ownership.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🌟</span>
+                <h3>Your Personal Showcase</h3>
+                <p>All your verified videos from YouTube, Instagram, TikTok, and every platform appear together on your Rendr showcase page. One place for fans to discover your complete collection.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3>Real-Time Analytics Dashboard</h3>
+                <p>See how your verified content performs across ALL platforms in one unified dashboard. Track views, engagement, and growth from YouTube, Instagram, TikTok, and more - all in real-time.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">✅</span>
+                <h3>Instant Verification</h3>
+                <p>Fans and followers can instantly verify your videos are real and original. Your Rendr watermark becomes a badge of authenticity that builds trust and protects your reputation.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🚀</span>
+                <h3>Build Your Brand</h3>
+                <p>Every verified video strengthens your portfolio. Your showcase page becomes your professional calling card - proof of your authentic body of work that no one can fake or dispute.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section class="workflow">
+        <h2 class="section-title">Simple Workflow</h2>
+        <p class="section-subtitle">
+            Three easy steps from editing to verification
+        </p>
+
+        <div class="workflow-steps">
+            <div class="workflow-step">
+                <div class="step-number">1</div>
+                <h4>Create & Edit</h4>
+                <p>Use your favorite editing software - Premiere, Final Cut, DaVinci, or anything else. Edit your video exactly how you want it.</p>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-number">2</div>
+                <h4>Add Rendr Verification</h4>
+                <p>Upload your finished video to Rendr Studio. We add your cryptographic watermark in seconds and generate your unique verification code.</p>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-number">3</div>
+                <h4>Publish Anywhere</h4>
+                <p>Download your verified video and post it to YouTube, Instagram, TikTok, or anywhere. Your work is now cryptographically protected and appears on your showcase.</p>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-number">4</div>
+                <h4>Track Performance</h4>
+                <p>Watch your analytics dashboard update in real-time as your content spreads across platforms. See exactly how your verified work performs everywhere.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Compatibility Section -->
+    <section class="software">
+        <h2 class="section-title">Works With Your Favorite Tools</h2>
+        <p class="section-subtitle">
+            Edit with the software you know and love. Rendr verification happens after you're done creating.
+        </p>
+
+        <div class="software-logos">
+            <div class="software-item">
+                <div class="software-icon">🎬</div>
+                <div class="software-name">Adobe Premiere Pro</div>
+            </div>
+
+            <div class="software-item">
+                <div class="software-icon">🍎</div>
+                <div class="software-name">Final Cut Pro</div>
+            </div>
+
+            <div class="software-item">
+                <div class="software-icon">🎨</div>
+                <div class="software-name">DaVinci Resolve</div>
+            </div>
+
+            <div class="software-item">
+                <div class="software-icon">🎞️</div>
+                <div class="software-name">Vegas Pro</div>
+            </div>
+
+            <div class="software-item">
+                <div class="software-icon">📹</div>
+                <div class="software-name">iMovie</div>
+            </div>
+
+            <div class="software-item">
+                <div class="software-icon">✨</div>
+                <div class="software-name">Any Editor!</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard">
+        <h2 class="section-title">Unified Analytics Dashboard</h2>
+        <p class="section-subtitle">
+            Track your verified content performance across all platforms in real-time
+        </p>
+
+        <div class="dashboard-preview">
+            <h3 style="color: #00d4ff; text-align: center; font-size: 2rem; margin-bottom: 2rem;">Your Content at a Glance</h3>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">2.4M</div>
+                    <div class="metric-label">Total Views</div>
+                    <div style="margin-top: 1rem;">
+                        <span class="platform-badge">YouTube</span>
+                        <span class="platform-badge">Instagram</span>
+                        <span class="platform-badge">TikTok</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-value">47</div>
+                    <div class="metric-label">Verified Videos</div>
+                    <div style="margin-top: 1rem;">
+                        <span class="platform-badge">All Platforms</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-value">156K</div>
+                    <div class="metric-label">Total Engagement</div>
+                    <div style="margin-top: 1rem;">
+                        <span class="platform-badge">Likes</span>
+                        <span class="platform-badge">Comments</span>
+                        <span class="platform-badge">Shares</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-value">8.2K</div>
+                    <div class="metric-label">Verifications</div>
+                    <div style="margin-top: 1rem;">
+                        <span class="platform-badge">People Trust You</span>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: #b0b0b0; margin-top: 3rem; font-size: 1.2rem;">
+                See how each video performs on every platform. Track growth trends. Understand your audience. 
+                All in one beautiful dashboard updated in real-time.
+            </p>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="features">
+        <h2 class="section-title">Own Your Reputation</h2>
+        <p class="section-subtitle">
+            Every video you verify becomes permanent proof of your authentic work. Build a portfolio no one can fake.
+        </p>
+
+        <div class="cta-buttons">
+            <a href="#" class="cta-button cta-primary">Start Protecting Your Work</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>Brian James</h3>
+            <p>Creator and CEO</p>
+            <p><a href="mailto:Brian@rendrtruth.com">Brian@rendrtruth.com</a></p>
+        </div>
+    </footer>
+</body>
+</html>
