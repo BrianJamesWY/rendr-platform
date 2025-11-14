@@ -54,8 +54,8 @@
         }
 
         .checkstar-logo {
-            width: 200px;
-            height: 200px;
+            width: 250px;
+            height: 250px;
             display: inline-block;
             position: relative;
             animation: float 3s ease-in-out infinite;
@@ -69,7 +69,7 @@
         .checkstar-logo svg {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 0 30px rgba(0, 123, 255, 0.6));
+            filter: drop-shadow(0 0 40px rgba(0, 123, 255, 0.8));
         }
 
         .hero-content {
@@ -80,7 +80,7 @@
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 5rem;
             font-weight: 900;
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, #00d4ff 0%, #0080ff 100%);
@@ -93,7 +93,7 @@
         }
 
         .hero .tagline {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 600;
             margin-bottom: 2rem;
             color: #ffffff;
@@ -102,7 +102,7 @@
         }
 
         .hero .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 3rem;
             color: #b0b0b0;
             line-height: 1.6;
@@ -134,8 +134,8 @@
         }
 
         .cta-button {
-            padding: 1.5rem 3rem;
-            font-size: 1.3rem;
+            padding: 1.8rem 3.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             border: none;
             border-radius: 50px;
@@ -154,7 +154,7 @@
         }
 
         .cta-primary:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 123, 255, 0.6);
         }
 
@@ -166,7 +166,7 @@
 
         .cta-secondary:hover {
             background: rgba(0, 123, 255, 0.1);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
         }
 
         /* Features Section */
@@ -302,14 +302,51 @@
             margin-right: auto;
         }
 
+        /* Footer */
+        .footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            border-top: 2px solid rgba(0, 123, 255, 0.3);
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-size: 1.8rem;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .footer p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #00d4ff;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
 
             .hero .tagline {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
             }
 
             .hero .subtitle {
@@ -317,8 +354,8 @@
             }
 
             .checkstar-logo {
-                width: 150px;
-                height: 150px;
+                width: 180px;
+                height: 180px;
             }
 
             .section-title {
@@ -376,14 +413,15 @@
             </p>
 
             <div class="cta-buttons">
-                <a href="/mobile-app" class="cta-button cta-primary">Download the App</a>
-                <a href="/platform" class="cta-button cta-secondary">Explore Technology</a>
+                <a href="mobile.html" class="cta-button cta-primary">📱 Mobile Bodycam</a>
+                <a href="content-creators.html" class="cta-button cta-primary">🎬 Content Creators</a>
+                <a href="#technology" class="cta-button cta-secondary">Explore Technology</a>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features">
+    <section class="features" id="technology">
         <h2 class="section-title">Revolutionary Technology</h2>
         <p class="section-subtitle">
             We're not just building an app – we're building the infrastructure that makes truth unstoppable and lies extinct
@@ -471,9 +509,18 @@
             that can never be silenced or counterfeited.
         </p>
         <div class="cta-buttons">
-            <a href="/mobile-app" class="cta-button cta-primary">Start Creating Truth</a>
-            <a href="/platform" class="cta-button cta-secondary">License Our Technology</a>
+            <a href="mobile.html" class="cta-button cta-primary">Start Recording Truth</a>
+            <a href="content-creators.html" class="cta-button cta-secondary">Protect Your Work</a>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>Brian James</h3>
+            <p>Creator and CEO</p>
+            <p><a href="mailto:Brian@rendrtruth.com">Brian@rendrtruth.com</a></p>
+        </div>
+    </footer>
 </body>
 </html>
